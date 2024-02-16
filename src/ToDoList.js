@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 const ToDoList = () => {
   const [tasks, setTasks] = useState([]);
   const [taskName, setTaskName] = useState('');
-  const [editIndex, setEditIndex] = useState(-1); // Düzenleme indeksi
+  const [editIndex, setEditIndex] = useState(-1);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -37,13 +37,13 @@ const ToDoList = () => {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-400">
-      <div className="w-1/2 h-auto bg-gray-200 rounded shadow-lg p-8">
-        <h1 className="text-3xl font-bold mb-6">To-Do List</h1>
+      <div className="w-1/2 h-auto p-8 bg-gray-200 rounded shadow-lg">
+        <h1 className="mb-6 text-3xl font-bold">To-Do List</h1>
         <form onSubmit={handleSubmit(onSubmit)} className="mb-8">
           <input
             type="text"
             {...register('taskName', { required: true })}
-            className="border border-gray-300 rounded px-4 py-2 mb-4 w-full"
+            className="w-full px-4 py-2 mb-4 border border-gray-300 rounded"
             placeholder="Add new task..."
             value={taskName}
             onChange={e => setTaskName(e.target.value)}
@@ -51,7 +51,7 @@ const ToDoList = () => {
           <div className="flex">
             <button
               type="submit"
-              className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 mr-4"
+              className="px-6 py-2 mr-4 text-white bg-blue-500 rounded hover:bg-blue-600"
             >
               {editIndex !== -1 ? 'Edit Task' : 'Add Task'}
             </button>
@@ -62,7 +62,7 @@ const ToDoList = () => {
                   setTaskName(''); 
                   setEditIndex(-1); 
                 }}
-                className="bg-gray-400 text-white px-6 py-2 rounded hover:bg-gray-600"
+                className="px-6 py-2 text-white bg-gray-400 rounded hover:bg-gray-600"
               >
                 Cancel
               </button>
@@ -71,18 +71,18 @@ const ToDoList = () => {
         </form>
         <ul className="space-y-2">
           {tasks.map((task, index) => (
-            <li key={index} className="border border-gray-300 px-4 py-2 flex justify-between items-center">
+            <li key={index} className="flex items-center justify-between px-4 py-2 border border-gray-300">
               <span>{task}</span>
               <div className="flex space-x-2">
                 <button
                   onClick={() => editTask(task, index)}
-                  className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
+                  className="px-4 py-2 text-white bg-yellow-500 rounded hover:bg-yellow-600"
                 >
                   Edit
                 </button>
                 <button
                   onClick={() => removeTask(index)}
-                  className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+                  className="px-4 py-2 text-white bg-red-500 rounded hover:bg-red-600"
                 >
                   Remove
                 </button>
